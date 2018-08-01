@@ -112,13 +112,13 @@
                 <div class="tbl-header">
                     <table class="table table-hover">
                         <thead>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Address</th>
-                        <th>Telephone</th>
-                        <th></th>
-                        <th></th>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Address</th>
+                            <th>Telephone</th>
+                            <th>Delete</th>
+                            <th>Edit</th>
                         </thead>
 
                     </table>

@@ -57,7 +57,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Home</a>
+            <a class="navbar-brand" href="../index.jsp">Home</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
@@ -74,22 +74,24 @@
     <div >
         <div class="jumbotron text-center">
             <h2>Edit Employee</h2>
+
             <form class="register-form" id="register">
                 ID:<br>
                 <input type="text" id="id" readonly/>
                 <br>
                 Name:<br>
-                <input type="text" name="firstname" required>
+                <input type="text" name="firstname" id="name" required>
                 <br>
                 Email:<br>
-                <input type="text" name="lastname" required>
+                <input type="text" name="lastname" id="email" required>
                 <br>
                 Address:<br>
-                <input type="text" name="firstname" required>
+                <input type="text" name="firstname" id="address" required>
                 <br>
                 Contact Number:<br>
-                <input type="text" name="lastname" required>
+                <input type="text" name="lastname" id="telephone" required>
                 <br><br>
+
                 <button class="buttonUp">Save</button>
             </form>
         </div>

@@ -22,6 +22,7 @@ $(document).ready(function () {
 
     function createEmployee() {
         var formData = {
+            id: $("#id").val(),
             name: $("#name").val(),
             address: $("#address").val(),
             telephone: $("#number").val(),
@@ -49,6 +50,7 @@ $(document).ready(function () {
     }
 
     function resetData() {
+        $("#id").val("");
         $("#name").val("");
         $("#address").val("");
         $("#number").val("");

@@ -20,9 +20,14 @@ $(document).ready(function () {
         "Accept": "application/json"
     };
 
-    getEmployeeList();
+    getEmployeeList();//caling getEmployeeList method
 
+    /**
+     * method getEmployeeList is to take all
+     * saved employees from database. we are mapping the url of
+     */
     function getEmployeeList() {
+        /*mapping urls*/
         $.ajax({
             url: "http://localhost:8081/ABCCompany/test",
             type: 'GET',
@@ -30,20 +35,21 @@ $(document).ready(function () {
             contentType: "application/json; charset=utf-8",
             headers: headers,
             dataType: "json",
+            /*if mapped successfully */
             success: function (result) {
                 $.each(result, function (i, employee) {
                     var id = employee.id;
-                    var $tr = $('<tr>').append(
+                    var $row = $('<tr>').append(
                             $('<td>').text(employee.id),
                             $('<td>').text(employee.name),
                             $('<td>').text(employee.email),
                             $('<td>').text(employee.address),
                             $('<td>').text(employee.telephone),
                             $('<td>').innerHTML =
-                                '<button class="btn-delete" onclick="deleteUser(' + id + ')">Delete</button>',
+                                '<button class="btn-delete" onclick="deleteEmployee(' + id + ')">Delete</button>',
                             $('<td>').innerHTML =
-                                '<button class="btn-edit" onclick="getUser(' + id + ')">Edit</button>');
-                    $('.tbl-content .employee_info').append($tr);
+                                '<button class="btn-edit" onclick="editEmployee(' + id + ')">Edit</button>');
+                            $('.tbl-content .employee_info').append($row);
                 });
 
             },
@@ -55,14 +61,21 @@ $(document).ready(function () {
 
 });
 
+/**
+ * in method getId I'm storing user selected employeeID
+ * @param employee
+ */
+function getId(employee) {
+    var id = employee.id;
+    localStorage.setItem('employeeId', id);
+}
+
 function deleteEmployee(id) {
     $.ajax({
         url: "http://localhost:8081/ABCCompany/delete/" + id,
         type: 'DELETE',
         success: function () {
             window.location.href = "http://localhost:8080"
-            alert("Employee deleted successfully!");
-
         },
         error: function (e) {
             alert("Error" + e);
@@ -70,7 +83,11 @@ function deleteEmployee(id) {
     });
 }
 
-function getEmployee(id) {
+/**
+ * method editEmployee will help to edit employee details
+ * @param id
+ */
+function editEmployee(id) {
     $.ajax({
         url: "http://localhost:8081/ABCCompany/employee/" + id,
         type: 'GET',
@@ -90,10 +107,5 @@ function getEmployee(id) {
             alert("Error" + e);
         }
     });
-
-    $(window).on("load resize ", function () {
-        var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
-        $('.tbl-header').css({'padding-right': scrollWidth});
-    }).resize();
 
 }

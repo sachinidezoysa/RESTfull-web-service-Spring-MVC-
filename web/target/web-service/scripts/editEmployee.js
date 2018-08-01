@@ -15,15 +15,19 @@
 
 $(document).ready(function () {
 
-    var employeeId = localStorage.getItem('employeeId');
+    var employeeId = localStorage.getItem('employeeId');//taking user selected employeeID from localstorage
 
     getEmployee(employeeId);
 
     $('.buttonUp').click(function (e) {
         e.preventDefault();
-        phoneNumberValidation();
+        // phoneNumberValidation();
     });
 
+    /**
+     * will set selected employee details
+     * @param id
+     */
     function getEmployee(id) {
         $.ajax({
             url: "http://localhost:8081/ABCCompany/employee/" + id,
@@ -48,14 +52,15 @@ $(document).ready(function () {
         var employeeId = employee.id;
         var employeeName = employee.name;
         var email = employee.email;
-        var tele = employee.telephone;
+        var telephone = employee.telephone;
         var address = employee.address;
 
         $('#id').val(employeeId);
         $('#name').val(employeeName);
         $('#address').val(address);
         $('#email').val(email);
-        $('#number').val(tele);
+        $('#telephone').val(telephone);
+
     }
 
     function updateEmployee(id) {
@@ -83,17 +88,6 @@ $(document).ready(function () {
         });
 
     }
-
-    function phoneNumberValidation() {
-        var number = $('#number').val();
-        if (number.length !== 10) {
-            alert('Phone number must be 10 digits.');
-            $('#number').val('');
-        } else {
-            updateEmployee(employeeId);
-        }
-    }
-
     function resetData() {
         $("#name").val("");
         $("#address").val("");
